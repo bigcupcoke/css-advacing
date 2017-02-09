@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>selectors in css</title>
+        <style media="screen">
+            .header, .main, .footer {
+                background: yellow;
+            }
+            /*.main .a {
+                background: red;
+            }*/
+            .container > .footer {
+                background: green;
+            }
+            div + div {
+                border-top: 1px solid black;
+            }
+            .main + .footer {
+                background: red;
+            }
+            .g li {
+                color: red;
+            }
+            [title='b'] {
+                background: blue;
+            }
+            div:first-child {
+                background: lightblue;
+            }
+            div::first-letter {
+                text-transform: uppercase;
+                font-size: 20px;
+            }
+            ::selection {
+                background: gray;
+                color: lightgreen;
+            }
+            div:empty {
+                background: lightblue;
+                height: 20px;
+            }
+            .footer::before {
+                content: 'before';
+            }
+            .footer::after{
+                content: 'after';
+            }
+            .header ~ div {
+                color: green;
+            }
+            /*li:nth-child(2) {
+                color: red;
+            }
+            ul :nth-child(1) {
+                color: red;
+            }*/
+            .h > li {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                float: left;
+                width: 23%;
+                height: 10vh;
+                border: 1px solid black;
+            }
+            ul {
+                background: lightblue;
+                margin: 0;
+                padding: 0;
+            }
+            .h :nth-child(4n+1){
+                background: lightgreen;
+            }
+            .h :nth-child(4n+2){
+                background: lightyellow;
+            }
+            .h :nth-child(4n+3){
+                background: lightblue;
+            }
+            .h :nth-child(4n+4){
+                background: lightgray;
+            }
+            .clearfix::after {
+                content: '.';
+                height: 0;
+                display: block;
+                visibility: hidden;
+                clear: both;
+            }
+            .g :last-child {
+                background: red;
+            }
+            /*.g :first-child {
+                background: red;
+            }*/
+            .g :nth-of-type(2) {
+                background: red;
+            }
+            .g p:only-of-type {
+                background: red;
+            }
+            .header :only-child {
+                background: red;
+            }
+            .g :not(li) {
+                border: 1px solid black;
+            }
+            .g > *{
+                font-size: 20px;
+            }
+            ul.h {
+                padding: 20px;
+            }
+            @keyframes highlight {
+                0% { background: blue; }
+                100% { background: orange; }
+            }
+            /*:target {
+                animation: highlight 3s ease-out;
+            }*/
+            #test1:target, #test2:target {
+                animation: highlight 3s ease-out;
+            }
+        </style>
+        <!-- CSS选择器测试，旨在理清所有css的选择器
+        参见阮一峰blog： http://www.ruanyifeng.com/blog/2009/03/css_selectors.html
+        张鑫旭：http://www.zhangxinxu.com/wordpress/2016/09/css-first-letter-pseudo-element/
+        《css 权威指南》第三章， 第十二章
+        伪类中 div:first-child 是本身作为第一个子元素的div元素
+        伪元素取不到
+        div::first-letter 相当于<div>aaa</div>服务自己变为 <div><div:first-letter>a</div:first-letter>aa</div>
+        并且first-letter定义的颜色权重是最高的，比!important还高
+        div::before 插入的内容还是在div的content-area里
+        css3选择器
+        E ~ F	匹配任何在E元素之后的同级F元素
+        :empty,空元素，空格都不能有
+        :nth-child(n) 让你匹配到父元素的任一子元素,last-child(n)反着来，
+        li：nth-child(1),父元素第1个子元素是li是才有效
+        最好在父元素指定限制进行匹配， div :nth-child(n),则选择div下的第n个子元素, 空格为后代选择器
+        p:nth-of-type(n), 表示父元素下的p元素的第 n个
+        若在父元素上进行匹配限制，div :nth-of-type， 则选择div下每种元素的第n个
+        :last-child, :first-child
+        :only-of-type（很有用） :only-child 唯一一个(感觉没什么卵用)
+        :not(seletor)
+        div >/' '是后接伪类表示选择所有子元素，后代， 相当于*，只不过写法上可省略
+        :target 为了辅助标识那些指向文档特定部分链接的目标
+        :target有个疑问(？)，点击<a>指向目标后目标一直处于target后的状态，刷新后也不会初始化，唯有点击另一个<a>
+        -->
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <span id="header">header</span>
+                <!-- <input type="search" name="name" value=""> -->
+            </div>
+            <div class="main">
+                main
+                <a href="#test1">test1</a>
+                <a href="#test2">test2</a>
+                <div class="a" title="a">
+                    aaa
+                </div>
+                <div class="b" title="b">
+                    bbb
+                </div>
+                <div class="c" title="c-d">
+                    ccc
+                </div>
+                <div class="d">
+                    ddd
+                </div>
+                <div class="e">
+                    eee
+                </div>
+                <div class="f"></div>
+                <div class="">
+                    <ul class="g">
+                        <p>1</p>
+                        <!-- <p>2</p> -->
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <ul class="h clearfix">
+            		<li>1</li><li>2</li><li>3</li><li>4</li>
+                    <li>5</li><li>6</li><li>7</li><li>8</li>
+                    <li>9</li><li>10</li><li>11</li><li>12</li>
+		            <li>13</li><li>14</li><li>15</li><li>16</li>
+                </ul>
+                <div class="float-test target-test" id="test1">
+                    clear float test and target test
+                </div>
+                <div class="target-test" id="test2">
+                    target test2
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
